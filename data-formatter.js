@@ -17,27 +17,32 @@ const counts = {
 };
 
 const rename = {
-  'b_b.png': 'blackbishop',
-  'b_w.png': 'whitebishop',
-  'k_b.png': 'blackking',
-  'k_w.png': 'whiteking',
-  'n_b.png': 'blackknight',
-  'n_w.png': 'whiteknight',
-  'p_b.png': 'blackpawn',
-  'p_w.png': 'whitepawn',
-  'q_b.png': 'blackqueen',
-  'q_w.png': 'whitequeen',
-  'r_b.png': 'blackrook',
-  'r_w.png': 'whiterook',
+  b_b: 'blackbishop',
+  b_w: 'whitebishop',
+  k_b: 'blackking',
+  k_w: 'whiteking',
+  n_b: 'blackknight',
+  n_w: 'whiteknight',
+  p_b: 'blackpawn',
+  p_w: 'whitepawn',
+  q_b: 'blackqueen',
+  q_w: 'whitequeen',
+  r_b: 'blackrook',
+  r_w: 'whiterook',
 };
 
 fs.readdir(`./image-set`, (err, files) => {
   if (err) console.log(err);
   files.forEach(file => {
     fs.rename(
-      `./images/${file}`,
-      `images/${file.replace(/^._./, file[rename])}`,
+      `./image-set/${file}`,
+      `image-set/${file.replace(/\.png/, '')}`,
       err => console.log(err),
     );
+    // fs.rename(
+    //   `./image-set/${file}`,
+    //   `image-set/${file.replace(/^._./, file[rename])}`,
+    //   err => console.log(err),
+    // );
   });
 });
