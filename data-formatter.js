@@ -16,17 +16,23 @@ const counts = {
   'r_w.png': 1,
 };
 
-fs.readdir('./pieces/', (err, folders) => {
-  folders.forEach(folder => {
-    fs.readdir(`./pieces/${folder}`, (err, files) => {
-      if (err) console.log(err);
-      files.forEach(file =>
-        fs.copyFile(
-          `./pieces/${folder}/${file}`,
-          `./image-set/${file}_${counts[file]++}.png`,
-          error => console.log(error),
-        ),
-      );
-    });
-  });
+const rename = {
+  'b_b.png': 'blackbishop',
+  'b_w.png': 'whitebishop',
+  'k_b.png': 'blackking',
+  'k_w.png': 'whiteking',
+  'n_b.png': 'blackknight',
+  'n_w.png': 'whiteknight',
+  'p_b.png': 'blackpawn',
+  'p_w.png': 'whitepawn',
+  'q_b.png': 'blackqueen',
+  'q_w.png': 'whitequeen',
+  'r_b.png': 'blackrook',
+  'r_w.png': 'whiterook',
+};
+
+fs.readdir(`./image-set`, (err, files) => {
+  console.log(files);
+  if (err) console.log(err);
+  files.forEach(file => file.replace(/^._./, file[rename]));
 });
