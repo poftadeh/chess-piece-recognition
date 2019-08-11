@@ -32,7 +32,12 @@ const rename = {
 };
 
 fs.readdir(`./image-set`, (err, files) => {
-  console.log(files);
   if (err) console.log(err);
-  files.forEach(file => file.replace(/^._./, file[rename]));
+  files.forEach(file => {
+    fs.rename(
+      `./images/${file}`,
+      `images/${file.replace(/^._./, file[rename])}`,
+      err => console.log(err),
+    );
+  });
 });
