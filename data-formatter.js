@@ -34,15 +34,15 @@ const rename = {
 fs.readdir(`./image-set`, (err, files) => {
   if (err) console.log(err);
   files.forEach(file => {
-    fs.rename(
-      `./image-set/${file}`,
-      `image-set/${file.replace(/\.png/, '')}`,
-      err => console.log(err),
-    );
     // fs.rename(
     //   `./image-set/${file}`,
-    //   `image-set/${file.replace(/^._./, file[rename])}`,
+    //   `image-set/${file.replace(/\.png/, '')}`,
     //   err => console.log(err),
     // );
+    fs.rename(
+      `./image-set/${file}`,
+      `image-set/${file.replace(/^._./, rename[file.slice(0, 3)])}`,
+      err => console.log(err),
+    );
   });
 });
